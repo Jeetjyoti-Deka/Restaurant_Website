@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import logo from "../assets/images/logo.svg";
+
 import heroBurger from "../assets/images/hero-burger.jpg";
-import { Link } from "react-router-dom";
+
+import Navbar from "../components/Navbar";
 
 const Wrapper = styled.div`
   background-color: var(--primary-color);
@@ -42,32 +43,12 @@ const Wrapper = styled.div`
     left: 24px;
   }
 
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 4;
-  }
-
-  .navbar .logo {
-    margin: var(--spacing-lg) 0;
-  }
-
-  .navbar .nav-links {
-    width: 40%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: var(--spacing-lg) 0;
-  }
-
   .hero {
     position: relative;
   }
 
   .hero-content {
-    margin: calc(var(--spacing-2xl) * 1.2) 0 0;
+    margin: calc(var(--spacing-2xl) * 2) 0 0;
     position: relative;
     z-index: 3;
   }
@@ -100,29 +81,15 @@ const LandingScreen = () => {
         <div className="blur-2"></div>
         <div className="blur-3"></div>
       </div>
-      <div className="container">
-        <nav className="navbar">
-          <div className="logo">
-            <img src={logo} alt="" />
-          </div>
-          <div className="nav-links">
-            <Link to="/home">Home</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/about">About</Link>
-            <button className="ghost-btn">Sign In</button>
-          </div>
-        </nav>
-      </div>
+      {/* <Navbar /> */}
 
       <div className="container">
-        <div className="hero">
-          <div className="hero-content">
-            <h1>Delicious Food is Waiting for You</h1>
-            <p>Taste, Love, Repeat: Unforgettable Flavors in Every Bite!</p>
-            <div className="btn-group">
-              <button className="primary-btn">Order Now!</button>
-              <button className="secondary-btn">View Menu</button>
-            </div>
+        <div className="hero-content">
+          <h1>Delicious Food is Waiting for You</h1>
+          <p>Taste, Love, Repeat: Unforgettable Flavors in Every Bite!</p>
+          <div className="btn-group">
+            <button className="primary-btn">Order Now!</button>
+            <button className="secondary-btn">View Menu</button>
           </div>
         </div>
       </div>

@@ -30,6 +30,12 @@ html {
   overflow-x: hidden;
 }
 
+body {
+  background-color: var(--primary-color);
+  color: var(--white);
+  min-height: 100vh;
+}
+
 img {
   display: block;
   width: 100%;
