@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #232734;
+  --secondary-color: #d17b26;
+  --white: #fff;
+  --grey-700: rgba(255, 255, 255, 0.2);
+  --grey-300: rgba(255, 255, 255, 0.6);
+
+  /* SPACING VARIABLES */
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+  --spacing-2xl: 96px;
+
+  /* FONT VARIABLES */
+  --heading-font: "Lora", serif;
+  --body-font: "Roboto", sans-serif;
+}
+
+body,
+html {
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: var(--grey-300);
+  text-decoration: none;
+}
+
+.container {
+  width: 80%;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.ghost-btn {
+  color: var(--white);
+  background-color: var(--grey-700);
+  border: none;
+  padding: 11px 24px;
+  border-radius: 7px;
+}
+
+.ghost-btn:hover {
+  cursor: pointer;
+}
+
+.primary-btn,
+.secondary-btn {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: 7px;
+  border: none;
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2.38px;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background-color: transparent;
+  color: var(--white);
+  border: 2.5px solid var(--secondary-color);
+  padding: 14px 29px;
+  margin: 0 0 0 var(--spacing-xl);
+}
