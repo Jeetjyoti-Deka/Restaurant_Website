@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import logo from "../assets/images/logo.svg";
 import heroBurger from "../assets/images/hero-burger.jpg";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   background-color: var(--primary-color);
@@ -105,9 +106,9 @@ const LandingScreen = () => {
             <img src={logo} alt="" />
           </div>
           <div className="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Contact</a>
-            <a href="#">About</a>
+            <Link to="/home">Home</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/about">About</Link>
             <button className="ghost-btn">Sign In</button>
           </div>
         </nav>

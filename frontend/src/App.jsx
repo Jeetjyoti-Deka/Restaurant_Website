@@ -1,9 +1,9 @@
-import LandingScreen from "./screens/LandingScreen";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
     <>
-      <LandingScreen />
+      <Outlet />
     </>
   );
 };
