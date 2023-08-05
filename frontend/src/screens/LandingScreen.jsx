@@ -89,17 +89,6 @@ const Wrapper = styled.div`
     line-height: 58px;
     margin: 0 0 var(--spacing-xl);
   }
-
-  /* .hero .hero-img {
-    min-width: 695px;
-    min-height: 651px;
-
-    background: url(${heroBurger}) var(--grey-300) 50% / cover no-repeat;
-    position: absolute;
-    top: 0;
-    right: -188px;
-    z-index: 1;
-  } */
 `;
 
 const LandingScreen = () => {
@@ -131,12 +120,9 @@ const LandingScreen = () => {
             <p>Taste, Love, Repeat: Unforgettable Flavors in Every Bite!</p>
             <div className="btn-group">
               <button className="primary-btn">Order Now!</button>
-              <button className="secondary-btn">View More</button>
+              <button className="secondary-btn">View Menu</button>
             </div>
           </div>
-          {/* <div className="hero-img">
-            <img src={heroBurger} alt="" />
-          </div> */}
         </div>
       </div>
     </Wrapper>
