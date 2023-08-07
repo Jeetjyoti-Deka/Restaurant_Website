@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import foodItems from "../items";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import itemImg from "../assets/images/savoury-sizzle.jpg";
 
 const Wrapper = styled.div`
@@ -65,13 +65,15 @@ const Wrapper = styled.div`
 const ItemScreen = () => {
   const { id: itemId } = useParams();
 
+  const navigate = useNavigate();
+
   const item = foodItems.find((x) => x._id === itemId);
 
   return (
     <Wrapper>
-      <Link to="/menu" className="ghost-btn">
+      <button className="ghost-btn" onClick={() => navigate(-1)}>
         Go Back
-      </Link>
+      </button>
       <div className="container">
         <div className="item-img">
           <img src={itemImg} alt="" />
