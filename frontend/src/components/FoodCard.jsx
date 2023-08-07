@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import cardImg1 from "../assets/images/savoury-sizzle.jpg";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   .card {
@@ -8,6 +9,13 @@ const Wrapper = styled.div`
     border-radius: 7px;
   }
 
+  .card a {
+    color: var(--white);
+  }
+
+  .card a:hover {
+    text-decoration: underline;
+  }
   .card .card-img {
     max-width: 243px;
     max-height: 210px;
@@ -33,6 +41,10 @@ const Wrapper = styled.div`
     font-size: 34px;
     font-weight: 700;
     line-height: 58px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 243px;
   }
 
   .card span {
@@ -43,16 +55,22 @@ const Wrapper = styled.div`
   }
 `;
 
-const FoodCard = () => {
+const FoodCard = ({ item }) => {
   return (
     <Wrapper>
       <div className="card">
-        <div className="card-img">
-          <img src={cardImg1} alt="" />
+        <Link to={`/food/${item._id}`}>
+          <div className="card-img">
+            <img src={cardImg1} alt="" />
+          </div>
+        </Link>
+        <div className="card-content">
+          <Link to={`/food/${item._id}`}>
+            <h2>{item.name}</h2>
+          </Link>
+          <span>${item.price}</span>
+          <button className="ghost-btn">Add</button>
         </div>
-        <h2>Savoury Sizzle</h2>
-        <span>$30.00</span>
-        <button className="ghost-btn">Add</button>
       </div>
     </Wrapper>
   );

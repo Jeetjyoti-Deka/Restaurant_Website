@@ -6,6 +6,7 @@ const foodItems = [
     imageLink: "https://example.com/pizza_margherita.jpg",
     detail:
       "A classic Italian pizza topped with tomato, mozzarella, fresh basil, and a drizzle of olive oil. Simple yet irresistibly delicious!",
+    fav: true,
   },
   {
     _id: "2",
@@ -14,6 +15,7 @@ const foodItems = [
     imageLink: "https://example.com/burger_deluxe.jpg",
     detail:
       "Juicy beef patty topped with melted cheese, crispy lettuce, ripe tomatoes, and our special secret sauce. A burger that satisfies every craving!",
+    fav: true,
   },
   {
     _id: "3",
@@ -22,6 +24,7 @@ const foodItems = [
     imageLink: "https://example.com/pasta_carbonara.jpg",
     detail:
       "A creamy pasta dish made with egg, Pecorino Romano cheese, pancetta, and black pepper. An Italian favorite that's both comforting and flavorful!",
+    fav: true,
   },
   {
     _id: "4",

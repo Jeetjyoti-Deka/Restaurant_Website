@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import cardImg1 from "../assets/images/savoury-sizzle.jpg";
 import FoodCard from "../components/FoodCard";
+import foodItems from "../items";
 
 const Wrapper = styled.div`
   margin: calc(var(--spacing-2xl) * 1.8) 0 var(--spacing-xl);
@@ -39,6 +40,8 @@ const Wrapper = styled.div`
   }
 `;
 
+const fav = foodItems.filter((item) => item.fav === true);
+
 const HomeScreen = () => {
   return (
     <Wrapper>
@@ -49,9 +52,9 @@ const HomeScreen = () => {
         </h1>
         <p>Our Customer Favourites:</p>
         <div className="card-container">
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
+          {fav.map((item) => (
+            <FoodCard item={item} />
+          ))}
         </div>
       </div>
     </Wrapper>
