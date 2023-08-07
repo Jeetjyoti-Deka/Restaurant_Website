@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import FoodCard from "../components/FoodCard";
-import foodItems from "../items";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Wrapper = styled.div`
   margin: calc(var(--spacing-2xl) * 1.8) 0 var(--spacing-xl);
@@ -39,9 +40,24 @@ const Wrapper = styled.div`
   }
 `;
 
-const fav = foodItems.filter((item) => item.fav === true);
-
 const HomeScreen = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:5000/api/items");
+        setItems(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchItems();
+  }, []);
+
+  const fav = items.filter((item) => item.fav === true);
+
   return (
     <Wrapper>
       <div className="container">
@@ -52,7 +68,7 @@ const HomeScreen = () => {
         <p>Our Customer Favourites:</p>
         <div className="card-container">
           {fav.map((item) => (
-            <FoodCard item={item} />
+            <FoodCard item={item} key={item._id} />
           ))}
         </div>
       </div>

@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import foodItems from "../items";
 import { useParams, useNavigate } from "react-router-dom";
 import itemImg from "../assets/images/savoury-sizzle.jpg";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Wrapper = styled.div`
   margin: calc(var(--spacing-2xl) * 2.5) 0 0;
@@ -65,9 +66,24 @@ const Wrapper = styled.div`
 const ItemScreen = () => {
   const { id: itemId } = useParams();
 
+  const [item, setItem] = useState({});
+
   const navigate = useNavigate();
 
-  const item = foodItems.find((x) => x._id === itemId);
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5000/api/items/${itemId}`
+        );
+        setItem(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchItem();
+  }, [itemId]);
 
   return (
     <Wrapper>

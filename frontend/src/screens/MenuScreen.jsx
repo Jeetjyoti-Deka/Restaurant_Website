@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import foodItems from "../items";
 import FoodCard from "../components/FoodCard";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Wrapper = styled.div`
   margin: calc(var(--spacing-2xl) * 1.6) 0 0;
@@ -27,6 +28,21 @@ const Wrapper = styled.div`
 `;
 
 const MenuScreen = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:5000/api/items");
+        setItems(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchItems();
+  }, []);
+
   return (
     <Wrapper>
       <div className="container">
@@ -35,8 +51,8 @@ const MenuScreen = () => {
           <span>Flavorful</span> Journey!
         </h1>
         <div className="card-container">
-          {foodItems.map((item) => (
-            <FoodCard item={item} />
+          {items.map((item) => (
+            <FoodCard item={item} key={item._id} />
           ))}
         </div>
       </div>
