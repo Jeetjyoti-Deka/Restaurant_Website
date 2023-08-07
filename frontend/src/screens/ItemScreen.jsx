@@ -1,10 +1,17 @@
 import styled from "styled-components";
 import foodItems from "../items";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import itemImg from "../assets/images/savoury-sizzle.jpg";
 
 const Wrapper = styled.div`
-  margin: calc(var(--spacing-2xl) * 2) 0 0;
+  margin: calc(var(--spacing-2xl) * 2.5) 0 0;
+  position: relative;
+
+  .ghost-btn {
+    position: absolute;
+    top: -71px;
+    left: 189px;
+  }
 
   .container {
     display: flex;
@@ -62,6 +69,9 @@ const ItemScreen = () => {
 
   return (
     <Wrapper>
+      <Link to="/menu" className="ghost-btn">
+        Go Back
+      </Link>
       <div className="container">
         <div className="item-img">
           <img src={itemImg} alt="" />
