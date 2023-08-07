@@ -12,6 +12,7 @@ import LandingScreen from "./screens/LandingScreen.jsx";
 import HomeScreen from "./screens/HomeScreen.jsx";
 import AboutScreen from "./screens/AboutScreen.jsx";
 import ContactScreen from "./screens/ContactScreen.jsx";
+import ItemScreen from "./screens/ItemScreen.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="/home" element={<HomeScreen />} />
       <Route path="/about" element={<AboutScreen />} />
       <Route path="/contact" element={<ContactScreen />} />
+      <Route path="/food/:id" element={<ItemScreen />} />
     </Route>
   )
 );
