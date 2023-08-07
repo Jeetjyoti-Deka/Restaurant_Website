@@ -1,12 +1,21 @@
-import foodItems from "../data/items.js";
+import itemModel from "../models/itemsModel.js";
 
-export const getItems = (req, res) => {
-  res.json(foodItems);
+export const getItems = async (req, res) => {
+  try {
+    const items = await itemModel.find({});
+    res.json(items);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const getItemById = (req, res) => {
+export const getItemById = async (req, res) => {
   const itemId = req.params.id;
 
-  const item = foodItems.find((x) => x._id === itemId);
-  res.json(item);
+  try {
+    const item = await itemModel.findById(itemId);
+    res.json(item);
+  } catch (error) {
+    console.log(error);
+  }
 };
