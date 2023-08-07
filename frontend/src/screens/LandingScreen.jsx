@@ -1,8 +1,6 @@
 import styled from "styled-components";
-
 import heroBurger from "../assets/images/hero-burger.jpg";
-
-import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   background-color: var(--primary-color);
@@ -81,7 +79,6 @@ const LandingScreen = () => {
         <div className="blur-2"></div>
         <div className="blur-3"></div>
       </div>
-      {/* <Navbar /> */}
 
       <div className="container">
         <div className="hero-content">
@@ -89,7 +86,9 @@ const LandingScreen = () => {
           <p>Taste, Love, Repeat: Unforgettable Flavors in Every Bite!</p>
           <div className="btn-group">
             <button className="primary-btn">Order Now!</button>
-            <button className="secondary-btn">View Menu</button>
+            <Link to="/menu" className="secondary-btn">
+              View Menu
+            </Link>
           </div>
         </div>
       </div>
