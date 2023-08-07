@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import cardImg1 from "../assets/images/savoury-sizzle.jpg";
 import FoodCard from "../components/FoodCard";
 import foodItems from "../items";
 

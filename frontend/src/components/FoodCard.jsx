@@ -3,10 +3,13 @@ import cardImg1 from "../assets/images/savoury-sizzle.jpg";
 import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
+  margin: 0 auto;
+
   .card {
     background-color: var(--secondary-color);
     padding: 25px 20px;
     border-radius: 7px;
+    max-width: 298px;
   }
 
   .card a {
