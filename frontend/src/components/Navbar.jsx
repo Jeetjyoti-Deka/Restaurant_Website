@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/images/logo.svg";
+import { useSelector } from "react-redux";
+import CartBadge from "./CartBadge";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -25,9 +27,16 @@ const Wrapper = styled.div`
     align-items: center;
     margin: var(--spacing-lg) 0;
   }
+
+  .navbar .cart {
+    position: relative;
+  }
 `;
 
 const Navbar = () => {
+  const { cartItems } = useSelector((state) => state.cart);
+  const itemCount = cartItems.reduce((acc, cur) => acc + cur.qty, 0);
+
   return (
     <Wrapper>
       <div className="container">
@@ -38,7 +47,10 @@ const Navbar = () => {
           <div className="nav-links">
             <Link to="/home">Home</Link>
             <Link to="/contact">Contact</Link>
-            <Link to="/about">About</Link>
+
+            <Link to="/cart" className="cart ghost-btn">
+              Cart <CartBadge itemCount={itemCount} />
+            </Link>
             <button className="ghost-btn">Sign In</button>
           </div>
         </nav>

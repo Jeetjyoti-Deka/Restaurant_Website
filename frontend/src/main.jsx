@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import LandingScreen from "./screens/LandingScreen.jsx";
 import HomeScreen from "./screens/HomeScreen.jsx";
-import AboutScreen from "./screens/AboutScreen.jsx";
+import CartScreen from "./screens/CartScreen.jsx";
 import ContactScreen from "./screens/ContactScreen.jsx";
 import ItemScreen from "./screens/ItemScreen.jsx";
 import MenuScreen from "./screens/MenuScreen.jsx";
@@ -23,7 +23,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<LandingScreen />} />
       <Route path="/home" element={<HomeScreen />} />
-      <Route path="/about" element={<AboutScreen />} />
+      <Route path="/cart" element={<CartScreen />} />
       <Route path="/contact" element={<ContactScreen />} />
       <Route path="/food/:id" element={<ItemScreen />} />
       <Route path="/menu" element={<MenuScreen />} />
