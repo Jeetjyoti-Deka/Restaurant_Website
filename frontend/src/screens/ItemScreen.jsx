@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
 import itemImg from "../assets/images/savoury-sizzle.jpg";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useGetItemByIdQuery } from "../slices/itemApiSlice";
 
 const Wrapper = styled.div`
   margin: calc(var(--spacing-2xl) * 2.5) 0 0;
@@ -65,42 +64,34 @@ const Wrapper = styled.div`
 
 const ItemScreen = () => {
   const { id: itemId } = useParams();
-
-  const [item, setItem] = useState({});
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchItem = async () => {
-      try {
-        const { data } = await axios.get(
-          `http://localhost:5000/api/items/${itemId}`
-        );
-        setItem(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchItem();
-  }, [itemId]);
+  const { data: item, isLoading, error } = useGetItemByIdQuery(itemId);
 
   return (
     <Wrapper>
-      <button className="ghost-btn" onClick={() => navigate(-1)}>
-        Go Back
-      </button>
-      <div className="container">
-        <div className="item-img">
-          <img src={itemImg} alt="" />
-        </div>
-        <div className="content">
-          <h1>{item.name}</h1>
-          <p>{item.detail}</p>
-          <span>Price: ${item.price}</span>
-          <button className="primary-btn">Add</button>
-        </div>
-      </div>
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : error ? (
+        <h2>{error?.data?.message || error?.error}</h2>
+      ) : (
+        <>
+          <button className="ghost-btn" onClick={() => navigate(-1)}>
+            Go Back
+          </button>
+          <div className="container">
+            <div className="item-img">
+              <img src={itemImg} alt="" />
+            </div>
+            <div className="content">
+              <h1>{item.name}</h1>
+              <p>{item.detail}</p>
+              <span>Price: ${item.price}</span>
+              <button className="primary-btn">Add</button>
+            </div>
+          </div>
+        </>
+      )}
     </Wrapper>
   );
 };

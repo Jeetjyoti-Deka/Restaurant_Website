@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import FoodCard from "../components/FoodCard";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useGetItemsQuery } from "../slices/itemApiSlice";
 
 const Wrapper = styled.div`
   margin: calc(var(--spacing-2xl) * 1.6) 0 0;
@@ -28,34 +27,29 @@ const Wrapper = styled.div`
 `;
 
 const MenuScreen = () => {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:5000/api/items");
-        setItems(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchItems();
-  }, []);
+  const { data: items, isLoading, error } = useGetItemsQuery();
 
   return (
     <Wrapper>
-      <div className="container">
-        <h1>
-          Explore Our Delectable Menu for a <br />
-          <span>Flavorful</span> Journey!
-        </h1>
-        <div className="card-container">
-          {items.map((item) => (
-            <FoodCard item={item} key={item._id} />
-          ))}
-        </div>
-      </div>
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : error ? (
+        <h2>{error?.data?.message || error?.error}</h2>
+      ) : (
+        <>
+          <div className="container">
+            <h1>
+              Explore Our Delectable Menu for a <br />
+              <span>Flavorful</span> Journey!
+            </h1>
+            <div className="card-container">
+              {items.map((item) => (
+                <FoodCard item={item} key={item._id} />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </Wrapper>
   );
 };
