@@ -1,21 +1,26 @@
+import asyncHandler from "../middlewares/asyncHandlerMiddleware.js";
 import itemModel from "../models/itemsModel.js";
 
-export const getItems = async (req, res) => {
-  try {
-    const items = await itemModel.find({});
-    res.json(items);
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const getItems = asyncHandler(async (req, res) => {
+  const items = await itemModel.find({});
 
-export const getItemById = async (req, res) => {
+  if (items) {
+    res.status(200).json(items);
+  } else {
+    res.status(404);
+    throw new Error("Items not found");
+  }
+});
+
+export const getItemById = asyncHandler(async (req, res) => {
   const itemId = req.params.id;
 
-  try {
-    const item = await itemModel.findById(itemId);
-    res.json(item);
-  } catch (error) {
-    console.log(error);
+  const item = await itemModel.findById(itemId);
+
+  if (item) {
+    res.status(200).json(item);
+  } else {
+    res.status(404);
+    throw new Error("Item not found");
   }
-};
+});
