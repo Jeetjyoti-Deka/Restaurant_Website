@@ -33,7 +33,7 @@ const Wrapper = styled.div`
     left: 0;
   }
 
-  .card button {
+  .card a {
     margin-left: 127px;
   }
 
@@ -72,7 +72,9 @@ const FoodCard = ({ item }) => {
             <h2>{item.name}</h2>
           </Link>
           <span>${item.price}</span>
-          <button className="ghost-btn">Add</button>
+          <Link to={`/food/${item._id}`} className="ghost-btn">
+            Add
+          </Link>
         </div>
       </div>
     </Wrapper>

@@ -9,6 +9,10 @@ const foodItemSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  countInStock: {
+    type: Number,
+    required: true,
+  },
   detail: String,
   fav: Boolean,
 });
