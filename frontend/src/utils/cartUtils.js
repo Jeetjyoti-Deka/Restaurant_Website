@@ -1,12 +1,12 @@
 export const addDecimal = (num) => {
-  return Number((Math.round(num * 100) / 100).toFixed(2));
+  return Math.floor((num * 100) / 100).toFixed(2);
 };
 
 export const updateCart = (state) => {
   // Calculate the item price
 
   state.itemsPrice = addDecimal(
-    state.cartItems.reduce((acc, cur) => acc + cur.price * cur.qty, 0)
+    Number(state.cartItems.reduce((acc, cur) => acc + cur.price * cur.qty, 0))
   );
 
   // Calculate the delivery price
