@@ -12,26 +12,26 @@ const CartTable = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 100 }} aria-label="simple table">
+      <Table sx={{ minWidth: 90 }} aria-label="simple table">
         <TableBody>
           <TableRow>
             <TableCell>Items Price</TableCell>
-            <TableCell align="center">${cart.itemsPrice}</TableCell>
+            <TableCell align="left">${cart.itemsPrice}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Tax</TableCell>
 
-            <TableCell align="center">${cart.taxPrice}</TableCell>
+            <TableCell align="left">${cart.taxPrice}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Delivery</TableCell>
 
-            <TableCell align="center">${cart.deliveryPrice}</TableCell>
+            <TableCell align="left">${cart.deliveryPrice}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Total</TableCell>
 
-            <TableCell align="center">${cart.totalPrice}</TableCell>
+            <TableCell align="left">${cart.totalPrice}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
