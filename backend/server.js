@@ -1,6 +1,7 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import dotenv from "dotenv";
 import itemRoutes from "./routes/itemRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import cors from "cors";
 import connectDB from "./db/connectDb.js";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
@@ -11,9 +12,13 @@ connectDB();
 
 const app = express();
 
+app.use(express.json());
+app.use(urlencoded({ extended: true }));
+
 app.use(cors());
 
 app.use("/api/items", itemRoutes);
+app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("API running...");

@@ -15,10 +15,8 @@ const importData = async () => {
     await User.deleteMany();
 
     const data = await User.insertMany(users);
-    console.log(data);
 
     const items = foodItems.map((x) => ({ ...x, user: data[2]._id }));
-    console.log(items);
 
     await Item.insertMany(items);
 
