@@ -25,9 +25,7 @@ export const authUser = asyncHandler(async (req, res, next) => {
 });
 
 export const adminMiddleware = (req, res, next) => {
-  const isAdmin = req.user.isAdmin;
-
-  if (isAdmin) {
+  if (req.user && req.user.isAdmin) {
     next();
   } else {
     res.status(401);
