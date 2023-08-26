@@ -1,22 +1,13 @@
 import asyncHandler from "../middlewares/asyncHandlerMiddleware.js";
 import User from "../models/usersModel.js";
-import jwt from "jsonwebtoken";
+import generateToken from "../utils/generateToken.js";
 
 export const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   let user = await User.findOne({ email });
   if (user && user.matchPassword(password)) {
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV !== "development", // Use secure cookies in production
-      sameSite: "strict", // Prevent CSRF attacks
-      maxAge: 60 * 60 * 1000, // 1 hour in milliseconds
-    });
+    generateToken(res, user._id); // Generate token and create cookie
 
     res.json({
       _id: user._id,
@@ -37,3 +28,30 @@ export const logout = (req, res) => {
   });
   res.status(200).json({ message: "Logged out successfully" });
 };
+
+export const register = asyncHandler(async (req, res) => {
+  const { email, password, name } = req.body;
+
+  const userExist = await User.findOne({ email });
+
+  if (userExist) {
+    res.status(400);
+    throw new Error("User already exists with the given email");
+  } else {
+    const createdUser = await User.create({ email, password, name });
+
+    if (createdUser) {
+      generateToken(res, createdUser._id); // Generate token and create cookie
+
+      res.status(200).json({
+        _id: createdUser._id,
+        name: createdUser.name,
+        email: createdUser.email,
+        isAdmin: createdUser.isAdmin,
+      });
+    } else {
+      res.status(400);
+      throw new Error("Invalid user data");
+    }
+  }
+});
